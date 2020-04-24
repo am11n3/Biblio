@@ -19,26 +19,44 @@
 <body>
 	<h2>Reserver un livre</h2>
 	Vous désirez réserver le livre suivant : <br><br>
-	<table>
+	<table border="2">
 		<tr>
-			<td>Code du livre</td> <td><?php echo "$code"; ?></td>
+			<td style="color: red;">Code du livre</td> <td><?php echo "$code"; ?></td>
 		</tr>
 		<tr>
-			<td>Nom de l'auteur</td> <td><?php echo "$nom"; ?></td>
+			<td style="color: red;">Nom de l'auteur</td> <td><?php echo "$nom"; ?></td>
 		</tr>
 		<tr>
-			<td>Prenom de l'auteur</td> <td><?php echo "$prenom"; ?></td>
+			<td style="color: red;">Prenom de l'auteur</td> <td><?php echo "$prenom"; ?></td>
 		</tr>
 		<tr>
-			<td>Titre</td> <td><?php echo "$titre"; ?></td>
+			<td style="color: red;">Titre</td> <td><?php echo "$titre"; ?></td>
 		</tr>
 		<tr>
-			<td>Categorie</td> <td><?php echo "$categorie"; ?></td>
+			<td style="color: red;">Categorie</td> <td><?php echo "$categorie"; ?></td>
 		</tr>
 		<tr>
-			<td>ISBN</td> <td><?php echo "$isbn"; ?></td>
+			<td style="color: red;">ISBN</td> <td><?php echo "$isbn"; ?></td>
 		</tr>
 	</table>
+	<form action="confirmation.php" method="post">
+		<input type="submit"  name="Con" value="Confirmer" style="position:relative;top:30px;left:120px;">
+	</form>
+	<?php 
+	try {
+	$conn = new PDO('mysql:host=localhost;dbname=librairie', 'root', '');
+	} 
+	catch (PDOException $e) 
+	{
+	    print "Erreur !: " . $e->getMessage() . "<br/>";
+	    die();
+	}
 
+	try {
+          
+         $sql = "UPDATE livres SET livdejareserve=1 WHERE livcode='$code'"; 
+             $conn->query($sql);
+         }catch( SQLException $e){  $e->getMessage();}	
+	 ?>
 </body>
 </html>

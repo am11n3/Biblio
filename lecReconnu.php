@@ -1,5 +1,5 @@
 <?php 
-echo  "Le lecteur n° ".$num." est reconnu";
+echo  "Le lecteur n° ".$_SESSION['numL']." est reconnu";
 echo '<h4>Voici la liste des ouvrages disponibles a la reservation</h4>';
 $livres=$conn->prepare("SELECT livcode,livnomaut,livprenomaut,livtitre,livcategorie,livISBN FROM livres WHERE livdejareserve='0'");
 	$livres->execute();
@@ -16,7 +16,7 @@ $livres=$conn->prepare("SELECT livcode,livnomaut,livprenomaut,livtitre,livcatego
 			echo "<td>Numéro ISBN</td>";
 			echo "<td></td>";
 		echo "</tr>";
-		while ( $row = $livres->fetch(PDO::FETCH_ASSOC)) 
+		while ( $row = $livres->fetch() )
 		{
 		echo "<tr align=''>";
 			echo  "<td>".$row["livcode"]."</td>";
@@ -25,7 +25,7 @@ $livres=$conn->prepare("SELECT livcode,livnomaut,livprenomaut,livtitre,livcatego
 	        echo  "<td>".$row["livtitre"]."</td>";
 	        echo  "<td>".$row["livcategorie"]."</td>";
 	        echo  "<td>".$row["livISBN"]."</td>";
-	        echo '<td><a href="reserverLivre.php?code=$row[0]&nom=$row[1]&pre=$row[2]&titre=$row[3]&categorie=$row[4]&isbn=$row[5]">Reserver</a></td>';
+	        echo "<td><a href=\"reserverLivre.php?code=$row[0]&nom=$row[1]&pre=$row[2]&titre=$row[3]&categorie=$row[4]&isbn=$row[5]\">Reserver</a></td>";
 	    echo "</tr>";
 		}
 		
