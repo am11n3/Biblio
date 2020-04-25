@@ -1,3 +1,6 @@
+//amine EEJORFI
+
+
 <?php 
 echo  "Le lecteur n° ".$_SESSION['numL']." est reconnu";
 echo '<h4>Voici la liste des ouvrages disponibles a la reservation</h4>';

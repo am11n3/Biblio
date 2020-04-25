@@ -1,3 +1,6 @@
+//amine EEJORFI
+
+
 <?php  
 	$conn = new mysqli("localhost","root","","librairie");
 	if ($conn->connect_error) {
